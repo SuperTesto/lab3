@@ -182,3 +182,42 @@ double String_double(string& st)
 	}
 	return ch;
 }
+
+double Calculate(vector<Lexema>& lexs)
+{
+	Stack<double> res;
+	double op1;
+	double op2;
+	for (int i = 0; i < lexs.size(); i++)
+	{
+		if (lexs[i].getType() == Value)
+		{
+			res.Push(String_double(lexs[i].getStr()));
+		}
+		else
+		{
+			if (res.Size() >= 2)
+			{
+				op2 = res.Pop();
+				op1 = res.Pop();
+				char c = lexs[i].getStr()[0];
+				switch (c)
+				{
+				case '+':res.Push(op1 + op2);
+					break;
+				case '-':res.Push(op1 - op2);
+					break;
+				case '*':res.Push(op1 * op2);
+					break;
+				case '/':res.Push(op1 / op2);
+					break;
+				}
+			}
+			else
+			{
+				throw exception("Data is incorrect");
+			}
+		}
+	}
+	return res.Pop();
+}
