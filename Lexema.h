@@ -89,6 +89,25 @@ Queue <Lexema> lex(string input) {
 	return res;
 };
 
+void brakes(string input) {
+	vector <int> openbr;
+	for (int i = 0; i < input.size(); i++) {
+		if (input[i] == '(') {
+			openbr.push_back(i);
+		}
+		else if (input[i] == ')') {
+			openbr.pop_back();
+		}
+	}
+	if (input.size)
+	cout << "\nExtra brackets positions: ";
+
+	for each (int pos in openbr)
+	{
+		cout << pos << " ";
+	}
+}//125+(1+(20*5))*10+(20*5))
+
 vector <Lexema> Reverse_Polska(Queue<Lexema> & q)
 {
  	vector <Lexema> res;
@@ -150,7 +169,7 @@ vector <Lexema> Reverse_Polska(Queue<Lexema> & q)
 					}
 					else
 					{
-						throw exception("Net (");
+						throw exception(brakes(str));
 					}
 				}
 			}
